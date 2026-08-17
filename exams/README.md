@@ -1,8 +1,8 @@
 # Practice Exams
 
-This directory contains English study reviews for the official practice midterm and final. The reviews summarize coverage, worked reasoning, common boundary cases, and a timed practice plan without reproducing official solution handouts.
+This directory contains my written answers to the official practice midterm and final. The answer files are independent study work and are not official Stanford solution handouts.
 
-- `midterm-review.md`
-- `final-review.md`
+- `midterm-answers.md`
+- `final-answers.md`
 
-The original practice exams and solution handouts remain outside the public repository.
+The original practice exams and official solution handouts remain outside the public repository.
