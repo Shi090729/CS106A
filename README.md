@@ -9,8 +9,8 @@ The goal is to build a public, verifiable learning record containing lecture not
 | Area | Completed | Total |
 | --- | ---: | ---: |
 | Lecture notes | 12 | 28 |
-| Section exercises | 2 | 9 |
-| Programming assignments | 2 | 7 |
+| Section exercises | 3 | 9 |
+| Programming assignments | 3 | 7 |
 | Practice exams | 0 | 2 |
 
 ## Repository Structure
@@ -36,7 +36,7 @@ Build and run instructions are documented inside each example or assignment dire
 
 ## Current Status
 
-Modules 1 and 2 are complete, including Sections 1-2 and Assignments 1-2. Lecture notes are complete through Lecture 12.
+Modules 1-3 are complete, including Sections 1-3 and Assignments 1-3. Lecture notes are complete through Lecture 12.
 
 ## Academic Integrity and Attribution
 

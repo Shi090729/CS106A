@@ -6,7 +6,7 @@ This directory will contain solutions and reflections for the nine section hando
 | ---: | --- | --- |
 | [1](section-01/) | Karel and decomposition | Complete |
 | [2](section-02/) | Java control flow and methods | Complete |
-| 3 | Graphics and events | Not started |
+| [3](section-03/) | Graphics and events | Complete |
 | 4 | Strings and objects | Not started |
 | 5 | Midterm problem solving | Not started |
 | 6 | Arrays, collections, and debugging | Not started |
