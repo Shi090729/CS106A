@@ -29,7 +29,6 @@ Karel lives on a rectangular grid:
 
 ## My Takeaways
 
-- I learned that good programming requires design skills, not only language syntax.
-- I should treat clear structure and maintainability as part of correctness.
-- I should expect bugs and practice debugging systematically instead of viewing errors as failure.
-- Karel will help me focus on algorithms before I deal with the complexity of full Java programs.
+The opening lecture changed the way I think about an introductory programming course. The goal is not simply to collect Java syntax, but to learn how to turn a vague problem into a clear procedure that another person can understand and maintain.
+
+Karel also feels like a sensible starting point rather than a toy. By removing most of the language, it leaves nowhere to hide weak decomposition or unclear reasoning. I also want to remember that debugging is expected work. A bug is evidence that my mental model and the program's behavior differ; finding that difference is part of programming, not proof that I should already have known the answer.

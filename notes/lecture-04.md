@@ -29,8 +29,6 @@ Graphics use a collage model: objects such as `GLabel`, `GRect`, `GOval`, and `G
 
 ## My Takeaways
 
-- The JVM explains why Java code can be compiled once and run on different systems.
-- A class is a definition, while an object is an actual instance created from it.
-- Inheritance lets a new class reuse existing behavior instead of rebuilding everything.
-- Karel's class structure, imports, and `run()` method were preparation for regular Java programs.
-- Creating a graphics object and adding it to the canvas are separate steps.
+The transition from Karel to Java is not as abrupt as it first appears. Imports, classes, inheritance, and `run()` were already present; the difference is that the Java libraries give the program a much larger collection of objects to work with.
+
+I found the source-code → bytecode → JVM path especially helpful because it explains Java's portability without treating “write once, run anywhere” as a slogan. On the graphics side, I need to keep construction and display separate in my mind: creating a `GLabel` gives me an object, but the object does not become visible until it is added to the canvas.

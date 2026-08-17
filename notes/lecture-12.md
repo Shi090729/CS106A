@@ -24,8 +24,6 @@ String algorithms often loop over character positions and build a result. A reve
 
 ## My Takeaways
 
-- The difference between `char` and `String` affects syntax and available operations.
-- Zero-based indexing and the exclusive end of `substring` are common sources of off-by-one errors.
-- Since strings are immutable, a transformation must save or return the new value.
-- `equals` is the correct choice for string content comparison.
-- A good string algorithm uses indexes deliberately and stops as soon as the answer is known.
+The distinction between a character and a string is small in appearance but important in Java: one is a primitive value written with single quotes, while the other is an immutable object with methods. Character codes make comparisons and arithmetic possible, but helper methods in `Character` are usually clearer when the goal is classification or case conversion.
+
+For string algorithms, I want to write down the index range before coding. `charAt` is zero-based and the end of `substring` is excluded. Palindrome checking is a good example of using the problem structure: only half of the positions need comparison, and the method can return immediately after the first mismatch.

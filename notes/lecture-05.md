@@ -36,8 +36,6 @@ Expressions combine variables, constants, method results, and operators. Java us
 
 ## My Takeaways
 
-- Choosing `int` or `double` should reflect whether a value represents a count or a measurable quantity.
-- Assignment changes stored state, so `x = x + 1` is meaningful in programming.
-- Object variables let me create several instances of the same class and control each one separately.
-- Graphics coordinates differ from the usual mathematical coordinate system because y increases downward.
-- If a graphics object does not appear, I should first check whether it was added to the canvas.
+Variables make more sense when I think of the type as part of the meaning, not just a compiler requirement. A count naturally suggests `int`; a measurement that can contain fractions suggests `double`; a graphics variable identifies a particular object that can later receive messages.
+
+The coordinate system is one detail I expect to trip over: moving “down” increases y, which is opposite to the graphs I learned in mathematics. My first debugging checklist for a missing shape will be simple: was it created, was it added, and are its coordinates actually inside the canvas?

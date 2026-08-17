@@ -1,0 +1,2 @@
+import java.io.*;import java.util.*;
+public class WordCount { public static int[] count(String file)throws IOException{Scanner s=new Scanner(new File(file));int lines=0,words=0,chars=0;while(s.hasNextLine()){String line=s.nextLine();lines++;chars+=line.length();boolean in=false;for(char c:line.toCharArray()){if(Character.isLetterOrDigit(c)){if(!in)words++;in=true;}else in=false;}}s.close();return new int[]{lines,words,chars};} }

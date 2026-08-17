@@ -32,10 +32,6 @@ A `for` loop contains initialization, a condition, and a step. Its condition is 
 
 ## My Takeaways
 
-- The type of the operands determines how division is performed; the destination variable does not change that calculation.
-- Parentheses make both the intended result and the code easier to understand.
-- Constants replace unexplained numbers and provide one place to update a shared value.
-- `=` assigns a value, while `==` tests equality.
-- Short-circuit evaluation is useful for protecting operations that would otherwise be invalid.
-- Scope explains when a variable exists and where it can be referenced.
-- I should choose control structures according to the meaning of the problem, not just because several forms can produce the same result.
+The integer-division example corrected an assumption I had: assigning the result to a `double` does not retroactively change how the expression was evaluated. At least one operand must already be a real value, or I need an explicit cast.
+
+Short-circuit evaluation is more than an optimization. It lets the left condition protect the right one, as in checking that a divisor is nonzero before dividing. I also want to use braces and named constants even when Java would allow a shorter version. Those choices make later edits safer and give unexplained numbers a purpose instead of leaving them as accidental facts in the code.

@@ -24,8 +24,6 @@ A `GArc` is defined by an oval's bounding box, a starting angle, and a sweep ang
 
 ## My Takeaways
 
-- Polymorphism lets one graphics algorithm work with many different `GObject` subclasses.
-- `null` must be checked before using the result of `getElementAt`.
-- Interfaces describe shared abilities more precisely than a superclass alone.
-- Smooth animation is a repeated cycle of updating state, drawing movement, and pausing.
-- Text and arc placement depend on their geometric definitions, not only on visible pixels.
+The graphics hierarchy makes polymorphism visible: the canvas can manage rectangles, labels, images, and compounds through the common `GObject` interface. At the same time, an interface such as `GFillable` describes a capability that not every `GObject` has. Those two dimensions—what an object is and what it can do—are useful to keep separate.
+
+Animation also looks less magical now. It is a loop that updates velocity and position, moves the object, and pauses long enough for the change to be visible. For collision code, I should reason about the object's geometry rather than only its reference point, and always check whether `getElementAt` returned `null` before sending a message to the result.

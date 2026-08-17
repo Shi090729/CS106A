@@ -31,10 +31,6 @@ The `Student` class combines these ideas: private fields store a name, ID, and u
 
 ## My Takeaways
 
-- A class should protect its state and expose only the operations clients actually need.
-- Constructors establish a valid starting state for every new object.
-- Each instance has separate fields, while a static field is shared across the class.
-- Object parameters can produce visible changes because copied references still point to the same object.
-- Shadowing is legal but can make code harder to read, so clear parameter names are preferable.
-- Javadoc makes a class usable without requiring clients to inspect its implementation.
-- `toString()` provides a useful textual view of a custom object.
+The `Student` example tied several ideas together. A class is not just a container for related variables; it defines which states are valid and which operations clients are allowed to perform. Constructors establish that valid starting point, and private fields prevent outside code from bypassing the rules.
+
+I now see Javadoc and `toString()` as two different forms of communication. Javadoc explains how another programmer should use the class, while `toString()` gives a quick readable view of one object during output or debugging. I should also avoid shadowing unless `this.field = field` genuinely makes the constructor clearer rather than more cryptic.

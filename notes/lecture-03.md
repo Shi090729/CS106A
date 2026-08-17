@@ -38,7 +38,6 @@ Good decomposition improves readability and makes later changes less expensive. 
 
 ## My Takeaways
 
-- I should check whether a loop changes the state used by its condition.
-- I should test first and last positions explicitly to catch off-by-one errors.
-- I should design from the problem level downward instead of immediately writing primitive commands.
-- Clear method names, contracts, and focused responsibilities make code easier to debug and maintain.
+This lecture made decomposition feel less like a style preference and more like a debugging tool. If every method has a specific precondition and postcondition, I can locate a broken assumption without tracing the entire program at once.
+
+The row-filling example is a useful reminder that loop boundaries deserve their own test cases. I should explicitly test the first corner, the final corner, and the smallest legal world. Before writing primitive Karel commands, I want to describe the solution from the top down and keep refining only the pieces that are still too vague to execute.

@@ -1,0 +1,1 @@
+import java.util.*;public class NameCounts { public static Map<String,Integer> count(List<String> names){Map<String,Integer> m=new HashMap<String,Integer>();for(String n:names)m.put(n,m.containsKey(n)?m.get(n)+1:1);return m;} }

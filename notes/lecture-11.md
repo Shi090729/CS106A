@@ -20,8 +20,6 @@ Keyboard callbacks include `keyPressed`, `keyReleased`, and `keyTyped`. A `KeyEv
 
 ## My Takeaways
 
-- A compound object is a useful way to hide the details of a complex picture.
-- Composition and inheritance make graphics components easy to reuse in existing code.
-- Registering listeners is essential; callbacks will not run without them.
-- Event callbacks should use the information carried by the event object.
-- Instance variables connect state that must be shared across separate callback calls.
+`GCompound` is the idea I expect to reuse most. If a face, game piece, or labeled box is represented as one compound, the rest of the program can move and store it without knowing every line and oval inside it. That is composition serving the same abstraction goal as helper methods.
+
+Events introduce a different control flow: the framework calls my methods when something happens. Registering the listener is therefore part of the program's setup, not optional boilerplate. Information that connects `mousePressed`, `mouseDragged`, and `mouseReleased` belongs in instance variables because those callbacks occur as separate method calls.

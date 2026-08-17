@@ -48,7 +48,6 @@ The SteepleChase example combines loops, conditions, and helper methods. High-le
 
 ## My Takeaways
 
-- I should first describe an algorithm clearly, then translate it into valid syntax.
-- I should use a `for` loop for known repetition and a `while` loop for condition-controlled repetition.
-- Small methods allow me to extend Karel's vocabulary and make code read like instructions.
-- Conditions let the same program respond to different worlds instead of relying on fixed distances.
+What stood out to me was how quickly four primitive commands become a larger vocabulary. Once `jumpHurdle()` or `turnRight()` has a good name and a reliable contract, I can reason at that level instead of repeatedly expanding it into turns and moves.
+
+I also need to choose loops by meaning. A `for` loop says that I know how many repetitions are required; a `while` loop says that the world determines when to stop. That distinction makes the algorithm easier to read and usually prevents me from hard-coding distances that only work in one Karel world.

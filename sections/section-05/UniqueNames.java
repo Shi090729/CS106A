@@ -1,0 +1,1 @@
+import java.util.*;public class UniqueNames { public static List<String> unique(List<String> names){ArrayList<String> r=new ArrayList<String>();for(String n:names)if(!r.contains(n))r.add(n);return r;} }

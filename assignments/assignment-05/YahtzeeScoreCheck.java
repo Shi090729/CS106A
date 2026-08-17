@@ -1,0 +1,2 @@
+import java.lang.reflect.*;
+public class YahtzeeScoreCheck { public static void main(String[] a)throws Exception { Method m=Yahtzee.class.getDeclaredMethod("scoreCategory",int[].class,int.class);m.setAccessible(true);int[] h={1,2,3,4,5};if((Integer)m.invoke(new Yahtzee(),h,YahtzeeConstants.LARGE_STRAIGHT)!=40)throw new RuntimeException();int[] f={2,2,2,3,3};if((Integer)m.invoke(new Yahtzee(),f,YahtzeeConstants.FULL_HOUSE)!=25)throw new RuntimeException();System.out.println("Yahtzee scoring passed");}}

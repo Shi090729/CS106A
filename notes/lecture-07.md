@@ -29,10 +29,6 @@ Methods support decomposition, reuse, and information hiding. The caller only ne
 
 ## My Takeaways
 
-- The placement of a loop's stopping test can remove duplicated code.
-- `for` communicates counting, while `while` communicates repetition until a condition changes.
-- Nested loops are a natural way to generate grids and other two-dimensional patterns.
-- A method's signature describes what information goes in and what type of result comes back.
-- Returning a value is different from printing it; the caller decides how to use the returned result.
-- Each method has its own local variables, even when another method uses the same names.
-- Good methods hide details behind a small, reusable interface.
+I liked the loop-and-a-half pattern because it solves a real structural problem: sometimes the program has to read a value before it can decide whether to continue. One well-placed `break` can be clearer than duplicating the input operation before and inside the loop.
+
+Methods also changed from being named chunks of commands into actual interfaces with inputs and outputs. Returning a result keeps the method reusable; printing it would force one particular use. When I design a helper, I should ask what the caller needs to provide and what useful value or state change the helper promises in return.

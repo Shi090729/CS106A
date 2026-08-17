@@ -30,9 +30,6 @@ Computer-generated values are pseudorandom: they come from a deterministic seque
 
 ## My Takeaways
 
-- A well-designed method exposes what it does while hiding how it does it.
-- Primitive arguments are copied, so modifying a parameter does not modify the caller's variable.
-- Stack frames explain why local variables with identical names remain independent across method calls.
-- Instance variables should represent persistent object state, not temporary calculations.
-- A fixed random seed turns an inconsistent bug into a reproducible test case.
-- Randomness should be tested with several sequences after deterministic debugging is complete.
+The stack-frame explanation gave me a concrete picture of method calls. Each invocation receives its own parameters and local variables, so identical names in different methods are not shared boxes. If a primitive value needs to change in the caller, the method must return the new value and the caller must store it.
+
+I also want to be more disciplined about instance variables. They are appropriate for information that must survive across callbacks or method calls, not simply for avoiding parameters. The fixed-seed technique is something I will reuse: deterministic randomness makes a failure repeatable, and only after fixing it should I test several ordinary random sequences.
