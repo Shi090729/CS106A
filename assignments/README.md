@@ -1,0 +1,15 @@
+# Programming Assignments
+
+This directory will contain the seven major programming assignments.
+
+| Assignment | Project | Status |
+| ---: | --- | --- |
+| 1 | Karel the Robot | Not started |
+| 2 | Simple Java Programs | Not started |
+| 3 | Breakout | Not started |
+| 4 | Hangman | Not started |
+| 5 | Yahtzee | Not started |
+| 6 | NameSurfer | Not started |
+| 7 | FacePamphlet | Not started |
+
+Each assignment directory will include source code, build and run instructions, test cases, screenshots where appropriate, and a short reflection.
