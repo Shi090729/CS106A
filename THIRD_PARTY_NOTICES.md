@@ -10,7 +10,7 @@ Stanford University, CS106A, the course staff, and the authors of the original m
 
 ## ACM and Karel Libraries
 
-Some course exercises depend on the Stanford ACM Java libraries and Karel libraries supplied with the original starter projects. Assignment 1 includes the original `karel.jar` from Stanford's official starter package so that the project retains its supplied structure and can run without additional setup. The library remains the property of its respective authors and is not student work.
+Some course exercises depend on the Stanford ACM Java libraries and Karel libraries supplied with the original starter projects. Assignment 1 includes the original `karel.jar`, and Assignment 2 includes the original `acm.jar`, so that both projects retain their supplied structure and can run without additional setup. These libraries remain the property of their respective authors and are not student work.
 
 ## Student Work
 

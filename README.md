@@ -8,9 +8,9 @@ The goal is to build a public, verifiable learning record containing lecture not
 
 | Area | Completed | Total |
 | --- | ---: | ---: |
-| Lecture notes | 3 | 28 |
-| Section exercises | 1 | 9 |
-| Programming assignments | 1 | 7 |
+| Lecture notes | 9 | 28 |
+| Section exercises | 2 | 9 |
+| Programming assignments | 2 | 7 |
 | Practice exams | 0 | 2 |
 
 ## Repository Structure
@@ -36,7 +36,7 @@ Build and run instructions are documented inside each example or assignment dire
 
 ## Current Status
 
-Module 1 is complete, including Lectures 1-3, Section 1, and Assignment 1. The next topic is Java foundations.
+Modules 1 and 2 are complete, including Lectures 1-9, Sections 1-2, and Assignments 1-2. The next topic is graphics and event-driven programming.
 
 ## Academic Integrity and Attribution
 
