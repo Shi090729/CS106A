@@ -11,7 +11,7 @@ The goal is to build a public, verifiable learning record containing lecture not
 | Lecture notes | 28 | 28 |
 | Section exercises | 9 | 9 |
 | Programming assignments | 7 | 7 |
-| Practice exams | 0 | 2 |
+| Practice exams | 2 | 2 |
 
 ## Repository Structure
 
