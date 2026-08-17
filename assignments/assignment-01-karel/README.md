@@ -15,7 +15,7 @@ I practiced breaking a problem into small methods instead of writing one long se
 
 ## Running the Programs
 
-Download the course `karel.jar` file and place it in this directory. Import the folder as an existing Eclipse project, then run a Java file with one of the matching worlds in `worlds/`.
+Import this folder as an existing Eclipse project, then run a Java file with one of the matching worlds in `worlds/`. The `karel.jar` library included with the official starter project is already configured in `.classpath`.
 
 ## Testing
 
@@ -23,4 +23,4 @@ All four programs compile with the course library. I also tested different world
 
 ## Attribution
 
-The Eclipse project files, starter comments, and world files come from the official Stanford Engineering Everywhere CS106A Assignment 1 starter package. The completed Java implementations are my assignment work.
+The Eclipse project files, `karel.jar`, starter comments, and world files come from the official Stanford Engineering Everywhere CS106A Assignment 1 starter package. The completed Java implementations are my assignment work.

@@ -10,7 +10,7 @@ Stanford University, CS106A, the course staff, and the authors of the original m
 
 ## ACM and Karel Libraries
 
-Some course exercises depend on the Stanford ACM Java libraries and Karel libraries supplied with the original starter projects. Those third-party binary files are not redistributed in this repository unless their licensing and redistribution terms are verified. Local build instructions will explain how they are referenced.
+Some course exercises depend on the Stanford ACM Java libraries and Karel libraries supplied with the original starter projects. Assignment 1 includes the original `karel.jar` from Stanford's official starter package so that the project retains its supplied structure and can run without additional setup. The library remains the property of its respective authors and is not student work.
 
 ## Student Work
 
