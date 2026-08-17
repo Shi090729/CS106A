@@ -1,8 +1,9 @@
 /*
  * File: CollectNewspaperKarel.java
  * --------------------------------
- * Karel collects the newspaper outside the house and returns to the
- * original position and direction.
+ * Karel walks to the door of its house, picks up the newspaper
+ * represented by a beeper, and returns to its initial position and
+ * direction in the upper-left corner of the house.
  */
 
 import stanford.karel.*;

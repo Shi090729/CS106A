@@ -1,7 +1,9 @@
 /*
  * File: CheckerboardKarel.java
  * ----------------------------
- * Karel fills any empty rectangular world with a checkerboard pattern.
+ * Karel draws a checkerboard using beepers. The program works for all
+ * rectangular worlds, including worlds that are only one row or one
+ * column wide.
  */
 
 import stanford.karel.*;

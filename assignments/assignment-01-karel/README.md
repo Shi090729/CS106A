@@ -1,6 +1,8 @@
 # Assignment 1 - Karel the Robot
 
-This assignment contains four Karel programs:
+This project is based on Stanford's official [`Assignment1` starter project](https://see.stanford.edu/materials/icspmcs106a/Assignment1.zip). It keeps the supplied Eclipse configuration and sample worlds, with my solutions added to the four Java files.
+
+The four programs are:
 
 - `CollectNewspaperKarel` collects a newspaper and returns home.
 - `StoneMasonKarel` repairs missing stones in several columns.
@@ -13,8 +15,12 @@ I practiced breaking a problem into small methods instead of writing one long se
 
 ## Running the Programs
 
-Add the course `karel.jar` file to the Java project, compile the `.java` files, and run the required class with a matching Karel world.
+Download the course `karel.jar` file and place it in this directory. Import the folder as an existing Eclipse project, then run a Java file with one of the matching worlds in `worlds/`.
 
 ## Testing
 
 All four programs compile with the course library. I also tested different world sizes and edge cases, including single-row and single-column checkerboards and midpoint worlds with widths from 1 to 12.
+
+## Attribution
+
+The Eclipse project files, starter comments, and world files come from the official Stanford Engineering Everywhere CS106A Assignment 1 starter package. The completed Java implementations are my assignment work.

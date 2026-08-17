@@ -1,8 +1,9 @@
 /*
  * File: MidpointFindingKarel.java
  * -------------------------------
- * Karel leaves exactly one beeper at the midpoint of 1st Street and
- * finishes on that beeper.
+ * Karel leaves one beeper on a corner closest to the center of 1st
+ * Street and finishes on that beeper. Any temporary beepers used while
+ * finding the midpoint are removed before the program stops.
  */
 
 import stanford.karel.*;
