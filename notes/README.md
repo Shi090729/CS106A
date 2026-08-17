@@ -13,4 +13,7 @@ This directory will contain English notes for all 28 lectures.
 | [07 - Loops and Methods](lecture-07.md) | Complete |
 | [08 - Information Hiding and Randomness](lecture-08.md) | Complete |
 | [09 - Strings and Custom Classes](lecture-09.md) | Complete |
-| 10-28 | Not started |
+| [10 - Graphics, Interfaces, and Animation](lecture-10.md) | Complete |
+| [11 - Compound Graphics and Events](lecture-11.md) | Complete |
+| [12 - Characters and Strings](lecture-12.md) | Complete |
+| 13-28 | Not started |

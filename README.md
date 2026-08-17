@@ -8,7 +8,7 @@ The goal is to build a public, verifiable learning record containing lecture not
 
 | Area | Completed | Total |
 | --- | ---: | ---: |
-| Lecture notes | 9 | 28 |
+| Lecture notes | 12 | 28 |
 | Section exercises | 2 | 9 |
 | Programming assignments | 2 | 7 |
 | Practice exams | 0 | 2 |
@@ -36,7 +36,7 @@ Build and run instructions are documented inside each example or assignment dire
 
 ## Current Status
 
-Modules 1 and 2 are complete, including Lectures 1-9, Sections 1-2, and Assignments 1-2. The next topic is graphics and event-driven programming.
+Modules 1 and 2 are complete, including Sections 1-2 and Assignments 1-2. Lecture notes are complete through Lecture 12.
 
 ## Academic Integrity and Attribution
 
