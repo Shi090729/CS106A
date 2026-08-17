@@ -14,4 +14,4 @@ Some course exercises depend on the Stanford ACM Java libraries and Karel librar
 
 ## Student Work
 
-Unless otherwise noted, the notes, implementations, tests, screenshots, and reflections committed to this repository are original independent-study work by the repository owner.
+Unless otherwise noted, the notes, implementations, tests, screenshots, and reflections are prepared for this independent-study project with AI-assisted study, review, and testing.

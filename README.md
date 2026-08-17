@@ -8,9 +8,9 @@ The goal is to build a public, verifiable learning record containing lecture not
 
 | Area | Completed | Total |
 | --- | ---: | ---: |
-| Lecture notes | 0 | 28 |
-| Section exercises | 0 | 9 |
-| Programming assignments | 0 | 7 |
+| Lecture notes | 3 | 28 |
+| Section exercises | 1 | 9 |
+| Programming assignments | 1 | 7 |
 | Practice exams | 0 | 2 |
 
 ## Repository Structure
@@ -36,10 +36,10 @@ Build and run instructions are documented inside each example or assignment dire
 
 ## Current Status
 
-The development environment has been validated with Java, `acm.jar`, and `karel.jar`. The next milestone is Lecture 1 and the first Karel exercises.
+Module 1 is complete, including Lectures 1-3, Section 1, and Assignment 1. The next topic is Java foundations.
 
 ## Academic Integrity and Attribution
 
-This repository contains my own notes and solutions created for independent study. Original course names, assignment concepts, APIs, and starter materials belong to their respective authors. Official solution handouts are not included.
+This repository contains notes and solutions prepared for independent study. AI tools are used to help summarize material, review code, and test solutions. Original course names, assignment concepts, APIs, and starter materials belong to their respective authors. Official solution handouts are not included.
 
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution details.

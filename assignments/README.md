@@ -4,7 +4,7 @@ This directory will contain the seven major programming assignments.
 
 | Assignment | Project | Status |
 | ---: | --- | --- |
-| 1 | Karel the Robot | Not started |
+| [1](assignment-01-karel/) | Karel the Robot | Complete |
 | 2 | Simple Java Programs | Not started |
 | 3 | Breakout | Not started |
 | 4 | Hangman | Not started |

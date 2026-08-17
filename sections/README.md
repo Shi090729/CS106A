@@ -4,7 +4,7 @@ This directory will contain solutions and reflections for the nine section hando
 
 | Section | Focus | Status |
 | ---: | --- | --- |
-| 1 | Karel and decomposition | Not started |
+| [1](section-01/) | Karel and decomposition | Complete |
 | 2 | Java control flow and methods | Not started |
 | 3 | Graphics and events | Not started |
 | 4 | Strings and objects | Not started |
