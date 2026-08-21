@@ -1,11 +1,3 @@
-/*
- * File: Hailstone.java
- * Name: Shi090729
- * Section Leader: Independent study
- * --------------------
- * This file is the starter file for the Hailstone problem.
- */
-
 import acm.program.*;
 
 public class Hailstone extends ConsoleProgram {

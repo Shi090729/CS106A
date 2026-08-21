@@ -1,7 +1,5 @@
 # Practice Final - My Answers
 
-These are my written answers to the official practice final. They are independent study work, not an official Stanford answer key.
-
 ## 1. References and Arrays
 
 Primitive arguments are copied values, so assigning to an `int` parameter changes only the method's local variable. An object argument is also passed by value, but the copied value is a reference to the same object; mutations through that reference are therefore visible to the caller.

@@ -1,15 +1,28 @@
 # Section Exercises
 
-This directory will contain solutions and reflections for the nine section handouts.
+Run these commands from the repository root.
 
-| Section | Focus | Status |
-| ---: | --- | --- |
-| [1](section-01/) | Karel and decomposition | Complete |
-| [2](section-02/) | Java control flow and methods | Complete |
-| [3](section-03/) | Graphics and events | Complete |
-| 4 | Strings and objects | Not started |
-| 5 | Midterm problem solving | Not started |
-| 6 | Arrays, collections, and debugging | Not started |
-| 7 | Interactors and GUI programs | Not started |
-| 8 | Data structures and program design | Not started |
-| 9 | Final review | Not started |
+## Build
+
+```powershell
+New-Item -ItemType Directory -Force build\sections | Out-Null
+$sources = Get-ChildItem sections -Recurse -Filter *.java
+javac -d build\sections -cp "assignments\assignment-02-simple-java\acm.jar;assignments\assignment-01-karel\karel.jar" $sources
+```
+
+## Run
+
+```powershell
+java -cp "build\sections;assignments\assignment-01-karel\karel.jar" KarelDefendsDemocracy
+java -cp "build\sections;assignments\assignment-02-simple-java\acm.jar" Fibonacci
+java -cp "build\sections;assignments\assignment-02-simple-java\acm.jar" RobotFace
+java -cp "build\sections;assignments\assignment-02-simple-java\acm.jar" DrawLines
+java -cp "build\sections;assignments\assignment-02-simple-java\acm.jar" Hogwarts
+java -cp "build\sections;assignments\assignment-02-simple-java\acm.jar" RandomCircles
+java -cp "build\sections" Mystery
+java -cp "build\sections;assignments\assignment-02-simple-java\acm.jar" BoxDiagram
+java -cp "build\sections" FlightPlanner sections\section-08\flights.txt
+java -cp "build\sections" EqualityAndArray
+```
+
+The remaining classes are helper implementations without a `main` method.

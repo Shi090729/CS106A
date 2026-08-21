@@ -1,4 +1,16 @@
 # Assignment 06 - NameSurfer
 
-Completed from the official starter project. Includes file parsing, database lookup, graph rendering, multiple curves, clear, and resize behavior.
+Run these commands from this directory so the program can find `names-data.txt`.
 
+## Build
+
+```powershell
+New-Item -ItemType Directory -Force build | Out-Null
+javac -d build -cp "acm.jar" *.java
+```
+
+## Run
+
+```powershell
+java -cp "build;acm.jar" NameSurfer
+```

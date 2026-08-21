@@ -1,11 +1,3 @@
-/*
- * File: ProgramHierarchy.java
- * Name: Shi090729
- * Section Leader: Independent study
- * ---------------------------
- * This file is the starter file for the ProgramHierarchy problem.
- */
-
 import acm.graphics.*;
 import acm.program.*;
 import java.awt.*;

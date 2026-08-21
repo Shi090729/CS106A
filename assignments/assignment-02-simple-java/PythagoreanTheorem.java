@@ -1,11 +1,3 @@
-/*
- * File: PythagoreanTheorem.java
- * Name: Shi090729
- * Section Leader: Independent study
- * -----------------------------
- * This file is the starter file for the PythagoreanTheorem problem.
- */
-
 import acm.program.*;
 
 public class PythagoreanTheorem extends ConsoleProgram {

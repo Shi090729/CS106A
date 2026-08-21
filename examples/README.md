@@ -1,5 +1,9 @@
 # Examples
 
-This directory contains small programs written while studying the lectures. Each example should include clear build and run instructions.
+## Java Environment Check
 
-The `environment-check` example verifies that the local Java compiler and runtime are working.
+```powershell
+cd examples\environment-check
+javac HelloCS106A.java
+java HelloCS106A
+```

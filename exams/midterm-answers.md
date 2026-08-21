@@ -1,7 +1,5 @@
 # Practice Midterm - My Answers
 
-These are my written answers to the official practice midterm. They are independent study work, not an official Stanford answer key.
-
 ## 1. Karel Inner Border
 
 ```java

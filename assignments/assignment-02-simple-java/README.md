@@ -1,3 +1,18 @@
 # Assignment 02 - Simple Java Programs
 
-Completed from the official starter project. Includes graphics, console, input, loop, and numeric-programming exercises.
+Run these commands from this directory.
+
+## Build
+
+```powershell
+New-Item -ItemType Directory -Force build | Out-Null
+javac -d build -cp "acm.jar" *.java
+```
+
+## Run
+
+Replace `Pyramid` with `ProgramHierarchy`, `Target`, `PythagoreanTheorem`, `FindRange`, or `Hailstone` to run another program.
+
+```powershell
+java -cp "build;acm.jar" Pyramid
+```

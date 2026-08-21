@@ -1,3 +1,16 @@
 # Assignment 03 - Breakout
 
-Completed from the official starter project. Includes the Breakout game with graphics, animation, mouse input, collision handling, lives, and win/loss states.
+Run these commands from this directory.
+
+## Build
+
+```powershell
+New-Item -ItemType Directory -Force build | Out-Null
+javac -d build -cp "acm.jar" Breakout.java
+```
+
+## Run
+
+```powershell
+java -cp "build;acm.jar" Breakout
+```

@@ -1,45 +1,19 @@
 # CS106A: Programming Methodology
 
-This repository documents my work through Stanford's CS106A Programming Methodology course, taught by Mehran Sahami.
+Course notes, section exercises, and programming assignments for Stanford CS106A.
 
-The goal is to build a public, verifiable learning record containing lecture notes, classroom examples, section exercises, programming assignments, tests, and reflections. All original work and documentation in this repository are written in English.
+## Requirements
 
-## Progress
+- Java Development Kit 8
+- PowerShell
 
-| Area | Completed | Total |
-| --- | ---: | ---: |
-| Lecture notes | 28 | 28 |
-| Section exercises | 9 | 9 |
-| Programming assignments | 7 | 7 |
-| Practice exams | 2 | 2 |
+## Running the Programs
 
-## Repository Structure
+Open PowerShell in the repository root. Each assignment has its own build and run commands in its `README.md`:
 
-```text
-.
-|-- assignments/       Programming assignments 1-7
-|-- assets/            Screenshots and other repository media
-|-- examples/          Lecture and environment examples
-|-- exams/             Midterm and final practice reflections
-|-- notes/             Lecture notes 1-28
-`-- sections/          Section exercises 1-9
+```powershell
+cd assignments\assignment-03-breakout
+Get-Content README.md
 ```
 
-## Development Environment
-
-- Eclipse Temurin JDK 8
-- Visual Studio Code
-- Extension Pack for Java
-- Stanford ACM and Karel libraries where required by the original assignments
-
-Build and run instructions are documented inside each example or assignment directory.
-
-## Current Status
-
-All lecture notes, Sections 1-9, and Assignments 1-7 are included. The repository contains the completed self-study materials for the full course.
-
-## Academic Integrity and Attribution
-
-This repository contains notes and solutions prepared for independent study. AI tools are used to help summarize material, review code, and test solutions. Original course names, assignment concepts, APIs, and starter materials belong to their respective authors. Official solution handouts are not included.
-
-See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution details.
+Section build and run commands are in [`sections/README.md`](sections/README.md). The basic Java environment check is in [`examples/environment-check`](examples/environment-check/).

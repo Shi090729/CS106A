@@ -1,11 +1,3 @@
-/*
- * File: FindRange.java
- * Name: Shi090729
- * Section Leader: Independent study
- * --------------------
- * This file is the starter file for the FindRange problem.
- */
-
 import acm.program.*;
 
 public class FindRange extends ConsoleProgram {
