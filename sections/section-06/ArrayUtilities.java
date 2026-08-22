@@ -1,1 +1,21 @@
-import acm.graphics.*;public class ArrayUtilities { public static GImage flipHorizontal(GImage img){int[][] p=img.getPixelArray();int[][] q=new int[p.length][p[0].length];for(int r=0;r<p.length;r++)for(int c=0;c<p[0].length;c++)q[r][p[0].length-1-c]=p[r][c];return new GImage(q);} }
+import acm.graphics.GImage;
+
+public class ArrayUtilities {
+
+    public static GImage flipHorizontal(GImage image) {
+        int[][] pixels = image.getPixelArray();
+        int height = pixels.length;
+
+        for (int row = 0; row < height; row++) {
+            int width = pixels[row].length;
+            for (int left = 0; left < width / 2; left++) {
+                int right = width - left - 1;
+                int temporary = pixels[row][left];
+                pixels[row][left] = pixels[row][right];
+                pixels[row][right] = temporary;
+            }
+        }
+
+        return new GImage(pixels);
+    }
+}
