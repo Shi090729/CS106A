@@ -1,67 +1,119 @@
 /*
  * File: NameSurferGraph.java
- * ---------------------------
- * This class represents the canvas on which the graph of
- * names is drawn. This class is responsible for updating
- * (redrawing) the graphs whenever the list of entries changes or the window is resized.
+ * --------------------------
+ * Draws the name-popularity graph and redraws it when resized.
  */
 
-import acm.graphics.*;
-import java.awt.event.*;
-import java.util.*;
-import java.awt.*;
+import acm.graphics.GCanvas;
+import acm.graphics.GLabel;
+import acm.graphics.GLine;
+
+import java.awt.Color;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NameSurferGraph extends GCanvas
-	implements NameSurferConstants, ComponentListener {
-	private ArrayList<NameSurferEntry> entries = new ArrayList<NameSurferEntry>();
+        implements NameSurferConstants, ComponentListener {
 
-	/**
-	* Creates a new NameSurferGraph object that displays the data.
-	*/
-	public NameSurferGraph() {
-		addComponentListener(this);
-	}
+    private static final Color[] GRAPH_COLORS = {
+        Color.BLACK, Color.RED, Color.BLUE, Color.MAGENTA
+    };
 
-	/**
-	* Clears the list of name surfer entries stored inside this class.
-	*/
-		public void clear() {
-			entries.clear();
-	}
+    private final List<NameSurferEntry> entries;
 
-	/* Method: addEntry(entry) */
-	/**
-	* Adds a new NameSurferEntry to the list of entries on the display.
-	* Note that this method does not actually draw the graph, but
-	* simply stores the entry; the graph is drawn by calling update.
-	*/
-		public void addEntry(NameSurferEntry entry) {
-			if (entry != null) entries.add(entry);
-	}
+    public NameSurferGraph() {
+        entries = new ArrayList<NameSurferEntry>();
+        addComponentListener(this);
+    }
 
+    public void clear() {
+        entries.clear();
+    }
 
+    public void addEntry(NameSurferEntry entry) {
+        if (entry != null) {
+            entries.add(entry);
+        }
+    }
 
-	/**
-	* Updates the display image by deleting all the graphical objects
-	* from the canvas and then reassembling the display according to
-	* the list of entries. Your application must call update after
-	* calling either clear or addEntry; update is also called whenever
-	* the size of the canvas changes.
-	*/
-		public void update() {
-			removeAll(); double w=getWidth(), h=getHeight();
-			for (int i=0;i<=NDECADES;i++){double x=i*w/NDECADES;add(new GLine(x,0,x,h));if(i<NDECADES)add(new GLabel(String.valueOf(START_DECADE+i*10),x+2,h-2));}
-			add(new GLine(0,GRAPH_MARGIN_SIZE,w,GRAPH_MARGIN_SIZE)); add(new GLine(0,h-GRAPH_MARGIN_SIZE,w,h-GRAPH_MARGIN_SIZE));
-			Color[] colors={Color.RED,Color.BLUE,Color.BLACK,Color.MAGENTA,Color.ORANGE,Color.GREEN};
-			for(int k=0;k<entries.size();k++){NameSurferEntry e=entries.get(k);double px=0,py=0;for(int i=0;i<NDECADES;i++){int rank=e.getRank(i);double x=i*w/(NDECADES-1),y=rank==0?h-GRAPH_MARGIN_SIZE:GRAPH_MARGIN_SIZE+(h-2*GRAPH_MARGIN_SIZE)*rank/(double)MAX_RANK;if(i>0){GLine line=new GLine(px,py,x,y);line.setColor(colors[k%colors.length]);add(line);}GLabel lab=new GLabel(e.getName()+" "+rank,x+2,y-2);lab.setColor(colors[k%colors.length]);add(lab);px=x;py=y;}}
-	}
+    public void update() {
+        removeAll();
+        drawGrid();
 
+        for (int index = 0; index < entries.size(); index++) {
+            Color color = GRAPH_COLORS[index % GRAPH_COLORS.length];
+            drawEntry(entries.get(index), color);
+        }
+    }
 
+    private void drawGrid() {
+        double width = getWidth();
+        double height = getHeight();
 
+        add(new GLine(0, GRAPH_MARGIN_SIZE, width, GRAPH_MARGIN_SIZE));
+        add(new GLine(0, height - GRAPH_MARGIN_SIZE,
+                width, height - GRAPH_MARGIN_SIZE));
 
-	/* Implementation of the ComponentListener interface */
-	public void componentHidden(ComponentEvent e) { }
-	public void componentMoved(ComponentEvent e) { }
-	public void componentResized(ComponentEvent e) { update(); }
-	public void componentShown(ComponentEvent e) { }
+        for (int decade = 0; decade < NDECADES; decade++) {
+            double x = getXForDecade(decade);
+            add(new GLine(x, 0, x, height));
+
+            String year = String.valueOf(START_DECADE + decade * 10);
+            add(new GLabel(year, x + 2, height - 2));
+        }
+    }
+
+    private void drawEntry(NameSurferEntry entry, Color color) {
+        double previousX = 0;
+        double previousY = 0;
+
+        for (int decade = 0; decade < NDECADES; decade++) {
+            int rank = entry.getRank(decade);
+            double x = getXForDecade(decade);
+            double y = getYForRank(rank);
+
+            if (decade > 0) {
+                GLine segment = new GLine(previousX, previousY, x, y);
+                segment.setColor(color);
+                add(segment);
+            }
+
+            String rankText = rank == 0 ? "*" : String.valueOf(rank);
+            GLabel label = new GLabel(entry.getName() + " " + rankText,
+                    x + 2, y - 2);
+            label.setColor(color);
+            add(label);
+
+            previousX = x;
+            previousY = y;
+        }
+    }
+
+    private double getXForDecade(int decade) {
+        return decade * getWidth() / (double) NDECADES;
+    }
+
+    private double getYForRank(int rank) {
+        if (rank == 0) {
+            return getHeight() - GRAPH_MARGIN_SIZE;
+        }
+
+        double graphHeight = getHeight() - 2.0 * GRAPH_MARGIN_SIZE;
+        return GRAPH_MARGIN_SIZE + graphHeight * rank / MAX_RANK;
+    }
+
+    public void componentResized(ComponentEvent event) {
+        update();
+    }
+
+    public void componentHidden(ComponentEvent event) {
+    }
+
+    public void componentMoved(ComponentEvent event) {
+    }
+
+    public void componentShown(ComponentEvent event) {
+    }
 }

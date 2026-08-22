@@ -1,33 +1,58 @@
 /*
  * File: NameSurfer.java
  * ---------------------
- * When it is finished, this program will implements the viewer for
- * the baby-name database described in the assignment handout.
+ * Displays the popularity of names across the decades in the data set.
  */
 
-import acm.program.*;
-import java.awt.event.*;
-import javax.swing.*;
+import acm.program.Program;
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class NameSurfer extends Program implements NameSurferConstants {
-	private NameSurferDataBase database; private NameSurferGraph graph; private JTextField field;
 
-/* Method: init() */
-/**
- * This method has the responsibility for reading in the data base
- * and initializing the interactors at the bottom of the window.
- */
-	public void init() {
-		setSize(APPLICATION_WIDTH, APPLICATION_HEIGHT); database=new NameSurferDataBase(NAMES_DATA_FILE); graph=new NameSurferGraph(); add(graph); field=new JTextField(15); add(new JLabel("Name:"),SOUTH); add(field,SOUTH); add(new JButton("Graph"),SOUTH); add(new JButton("Clear"),SOUTH); addActionListeners();
-	}
+    private NameSurferDataBase database;
+    private NameSurferGraph graph;
+    private JTextField nameField;
 
-/* Method: actionPerformed(e) */
-/**
- * This class is responsible for detecting when the buttons are
- * clicked, so you will have to define a method to respond to
- * button actions.
- */
-	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("Graph")){NameSurferEntry x=database.findEntry(field.getText().trim());if(x!=null){graph.addEntry(x);graph.update();}}else if(e.getActionCommand().equals("Clear")){graph.clear();graph.update();}
-	}
+    public void init() {
+        setSize(APPLICATION_WIDTH, APPLICATION_HEIGHT);
+
+        database = new NameSurferDataBase(NAMES_DATA_FILE);
+        graph = new NameSurferGraph();
+        add(graph);
+
+        nameField = new JTextField(15);
+        nameField.addActionListener(this);
+
+        add(new JLabel("Name:"), SOUTH);
+        add(nameField, SOUTH);
+        add(new JButton("Graph"), SOUTH);
+        add(new JButton("Clear"), SOUTH);
+        addActionListeners();
+    }
+
+    public void actionPerformed(ActionEvent event) {
+        String command = event.getActionCommand();
+
+        if (event.getSource() == nameField || command.equals("Graph")) {
+            graphName();
+        } else if (command.equals("Clear")) {
+            graph.clear();
+            graph.update();
+        }
+    }
+
+    private void graphName() {
+        String name = nameField.getText().trim();
+        NameSurferEntry entry = database.findEntry(name);
+
+        if (entry != null) {
+            graph.addEntry(entry);
+            graph.update();
+        }
+    }
 }

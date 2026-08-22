@@ -1,62 +1,54 @@
 /*
  * File: NameSurferEntry.java
  * --------------------------
- * This class represents a single entry in the database.  Each
- * NameSurferEntry contains a name and a list giving the popularity
- * of that name for each decade stretching back to 1900.
+ * Represents one name and its rank in each decade.
  */
 
-import acm.util.*;
-import java.util.*;
+import acm.util.ErrorException;
+
+import java.util.StringTokenizer;
 
 public class NameSurferEntry implements NameSurferConstants {
-	private String name;
-	private int[] ranks;
 
-/* Constructor: NameSurferEntry(line) */
-/**
- * Creates a new NameSurferEntry from a data line as it appears
- * in the data file.  Each line begins with the name, which is
- * followed by integers giving the rank of that name for each
- * decade.
- */
-	public NameSurferEntry(String line) {
-		StringTokenizer st = new StringTokenizer(line);
-		if (!st.hasMoreTokens()) throw new ErrorException("Empty name entry");
-		name = st.nextToken();
-		ranks = new int[NDECADES];
-		for (int i = 0; i < NDECADES && st.hasMoreTokens(); i++) ranks[i] = Integer.parseInt(st.nextToken());
-	}
+    private final String name;
+    private final int[] ranks;
 
-/* Method: getName() */
-/**
- * Returns the name associated with this entry.
- */
-	public String getName() {
-		return name;
-	}
+    public NameSurferEntry(String line) {
+        StringTokenizer tokenizer = new StringTokenizer(line);
+        if (!tokenizer.hasMoreTokens()) {
+            throw new ErrorException("Empty name entry");
+        }
 
-/* Method: getRank(decade) */
-/**
- * Returns the rank associated with an entry for a particular
- * decade.  The decade value is an integer indicating how many
- * decades have passed since the first year in the database,
- * which is given by the constant START_DECADE.  If a name does
- * not appear in a decade, the rank value is 0.
- */
-	public int getRank(int decade) {
-		if (decade < 0 || decade >= NDECADES) throw new ErrorException("Illegal decade");
-		return ranks[decade];
-	}
+        name = tokenizer.nextToken();
+        ranks = new int[NDECADES];
 
-/* Method: toString() */
-/**
- * Returns a string that makes it easy to see the value of a
- * NameSurferEntry.
- */
-	public String toString() {
-		StringBuilder sb = new StringBuilder(name);
-		for (int rank : ranks) sb.append(' ').append(rank);
-		return sb.toString();
-	}
+        for (int decade = 0; decade < NDECADES; decade++) {
+            if (!tokenizer.hasMoreTokens()) {
+                throw new ErrorException("Missing rank for " + name);
+            }
+            ranks[decade] = Integer.parseInt(tokenizer.nextToken());
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRank(int decade) {
+        if (decade < 0 || decade >= NDECADES) {
+            throw new ErrorException("Illegal decade index: " + decade);
+        }
+        return ranks[decade];
+    }
+
+    public String toString() {
+        String result = name + " [";
+        for (int decade = 0; decade < NDECADES; decade++) {
+            if (decade > 0) {
+                result += " ";
+            }
+            result += ranks[decade];
+        }
+        return result + "]";
+    }
 }

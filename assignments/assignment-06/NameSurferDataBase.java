@@ -1,42 +1,52 @@
 /*
  * File: NameSurferDataBase.java
  * -----------------------------
- * This class keeps track of the complete database of names.
- * The constructor reads in the database from a file, and
- * the only public method makes it possible to look up a
- * name and get back the corresponding NameSurferEntry.
- * Names are matched independent of case, so that "Eric"
- * and "ERIC" are the same names.
+ * Stores the complete collection of name records.
  */
 
-public class NameSurferDataBase implements NameSurferConstants {
-	private java.util.Map<String, NameSurferEntry> entries = new java.util.HashMap<String, NameSurferEntry>();
+import acm.util.ErrorException;
 
-/* Constructor: NameSurferDataBase(filename) */
-/**
- * Creates a new NameSurferDataBase and initializes it using the
- * data in the specified file.  The constructor throws an error
- * exception if the requested file does not exist or if an error
- * occurs as the file is being read.
- */
-	public NameSurferDataBase(String filename) {
-		try {
-			java.util.Scanner sc = new java.util.Scanner(new java.io.File(filename));
-			while (sc.hasNextLine()) {
-				String line = sc.nextLine().trim();
-				if (!line.isEmpty()) { NameSurferEntry e = new NameSurferEntry(line); entries.put(e.getName().toLowerCase(), e); }
-			}
-			sc.close();
-		} catch (java.io.FileNotFoundException ex) { throw new acm.util.ErrorException("Unable to open " + filename); }
-	}
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-/* Method: findEntry(name) */
-/**
- * Returns the NameSurferEntry associated with this name, if one
- * exists.  If the name does not appear in the database, this
- * method returns null.
- */
-	public NameSurferEntry findEntry(String name) {
-		return name == null ? null : entries.get(name.toLowerCase());
-	}
+public class NameSurferDataBase {
+
+    private final Map<String, NameSurferEntry> entries;
+
+    public NameSurferDataBase(String filename) {
+        entries = new HashMap<String, NameSurferEntry>();
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            readEntries(reader);
+            reader.close();
+        } catch (IOException exception) {
+            throw new ErrorException("Unable to read " + filename + ": "
+                    + exception.getMessage());
+        }
+    }
+
+    public NameSurferEntry findEntry(String name) {
+        if (name == null) {
+            return null;
+        }
+        return entries.get(name.toLowerCase());
+    }
+
+    private void readEntries(BufferedReader reader) throws IOException {
+        while (true) {
+            String line = reader.readLine();
+            if (line == null) {
+                break;
+            }
+
+            if (!line.trim().isEmpty()) {
+                NameSurferEntry entry = new NameSurferEntry(line);
+                entries.put(entry.getName().toLowerCase(), entry);
+            }
+        }
+    }
 }
