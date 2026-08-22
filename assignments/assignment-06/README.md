@@ -1,7 +1,5 @@
 # Assignment 06 - NameSurfer
 
-Run these commands from this directory so the program can find `names-data.txt`.
-
 ## Build
 
 ```powershell

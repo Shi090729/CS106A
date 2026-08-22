@@ -1,7 +1,5 @@
 # Assignment 07 - FacePamphlet
 
-Run these commands from this directory so image paths resolve correctly.
-
 ## Build
 
 ```powershell

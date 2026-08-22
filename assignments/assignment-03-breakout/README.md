@@ -1,7 +1,5 @@
 # Assignment 03 - Breakout
 
-Run these commands from this directory.
-
 ## Build
 
 ```powershell

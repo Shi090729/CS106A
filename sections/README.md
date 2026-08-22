@@ -1,7 +1,5 @@
 # Section Exercises
 
-Run these commands from the repository root.
-
 ## Build
 
 ```powershell
@@ -24,5 +22,3 @@ java -cp "build\sections;assignments\assignment-02-simple-java\acm.jar" BoxDiagr
 java -cp "build\sections" FlightPlanner sections\section-08\flights.txt
 java -cp "build\sections" EqualityAndArray
 ```
-
-The remaining classes are helper implementations without a `main` method.

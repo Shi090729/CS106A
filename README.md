@@ -1,19 +1,21 @@
 # CS106A: Programming Methodology
 
-Course notes, section exercises, and programming assignments for Stanford CS106A.
+This repository contains my completed work for Stanford CS106A Programming Methodology.
 
-## Requirements
+## Course Work
 
-- Java Development Kit 8
-- PowerShell
+- [Lecture notes](notes/) covering all 28 lectures
+- [Section exercises](sections/) for Sections 1–9
+- [Programming assignments](assignments/) from Karel through FacePamphlet
+- [Practice midterm and final answers](exams/)
+- Source code, required data files, and runtime screenshots
 
-## Running the Programs
+## Programming Assignments
 
-Open PowerShell in the repository root. Each assignment has its own build and run commands in its `README.md`:
-
-```powershell
-cd assignments\assignment-03-breakout
-Get-Content README.md
-```
-
-Section build and run commands are in [`sections/README.md`](sections/README.md). The basic Java environment check is in [`examples/environment-check`](examples/environment-check/).
+1. [Karel the Robot](assignments/assignment-01-karel/)
+2. [Simple Java Programs](assignments/assignment-02-simple-java/)
+3. [Breakout](assignments/assignment-03-breakout/)
+4. [Hangman](assignments/assignment-04/)
+5. [Yahtzee](assignments/assignment-05/)
+6. [NameSurfer](assignments/assignment-06/)
+7. [FacePamphlet](assignments/assignment-07/)

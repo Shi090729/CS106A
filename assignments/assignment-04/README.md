@@ -1,7 +1,5 @@
 # Assignment 04 - Hangman
 
-Run these commands from this directory so the program can find `HangmanLexicon.txt`.
-
 ## Build
 
 ```powershell

@@ -1,7 +1,5 @@
 # Assignment 05 - Yahtzee
 
-Run these commands from this directory.
-
 ## Build
 
 ```powershell
