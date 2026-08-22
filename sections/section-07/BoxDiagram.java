@@ -1,2 +1,109 @@
-import acm.program.*;import acm.graphics.*;import javax.swing.*;import java.awt.event.*;import java.util.*;
-public class BoxDiagram extends GraphicsProgram implements MouseListener,MouseMotionListener {private JTextField field;private Map<String,GCompound> boxes=new HashMap<String,GCompound>();private GCompound drag;private double dx,dy;public void init(){field=new JTextField(12);add(field,SOUTH);add(new JButton("Add"),SOUTH);add(new JButton("Remove"),SOUTH);add(new JButton("Clear"),SOUTH);addActionListeners();addMouseListeners();}public void actionPerformed(ActionEvent e){String n=field.getText();if(e.getActionCommand().equals("Add")){GCompound c=new GCompound();c.add(new GRect(-60,-25,120,50));c.add(new GLabel(n,-50,5));c.setLocation(getWidth()/2,getHeight()/2);add(c);boxes.put(n,c);}else if(e.getActionCommand().equals("Remove")){GCompound c=boxes.remove(n);if(c!=null)remove(c);}else{for(GCompound c:boxes.values())remove(c);boxes.clear();}}public void mousePressed(MouseEvent e){GObject o=getElementAt(e.getX(),e.getY());if(o instanceof GCompound){drag=(GCompound)o;dx=e.getX()-drag.getX();dy=e.getY()-drag.getY();}}public void mouseDragged(MouseEvent e){if(drag!=null)drag.setLocation(e.getX()-dx,e.getY()-dy);}public void mouseReleased(MouseEvent e){drag=null;}public void mouseClicked(MouseEvent e){}public void mouseEntered(MouseEvent e){}public void mouseExited(MouseEvent e){}public void mouseMoved(MouseEvent e){}}
+import acm.graphics.GCompound;
+import acm.graphics.GLabel;
+import acm.graphics.GObject;
+import acm.graphics.GRect;
+import acm.program.GraphicsProgram;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class BoxDiagram extends GraphicsProgram {
+
+    private static final double BOX_WIDTH = 120;
+    private static final double BOX_HEIGHT = 50;
+    private static final int MAX_NAME = 12;
+
+    private final Map<String, GCompound> boxes =
+            new HashMap<String, GCompound>();
+
+    private JTextField nameField;
+    private JButton addButton;
+    private JButton removeButton;
+    private JButton clearButton;
+    private GCompound draggedBox;
+    private double dragOffsetX;
+    private double dragOffsetY;
+
+    public void init() {
+        createControls();
+        addActionListeners();
+        addMouseListeners();
+    }
+
+    private void createControls() {
+        nameField = new JTextField(MAX_NAME);
+        nameField.addActionListener(this);
+        addButton = new JButton("Add");
+        removeButton = new JButton("Remove");
+        clearButton = new JButton("Clear");
+
+        add(new JLabel("Name"), SOUTH);
+        add(nameField, SOUTH);
+        add(addButton, SOUTH);
+        add(removeButton, SOUTH);
+        add(clearButton, SOUTH);
+    }
+
+    public void actionPerformed(ActionEvent event) {
+        Object source = event.getSource();
+        String name = nameField.getText();
+
+        if (source == nameField || source == addButton) {
+            addBox(name);
+        } else if (source == removeButton) {
+            removeBox(name);
+        } else if (source == clearButton) {
+            clearBoxes();
+        }
+    }
+
+    private void addBox(String name) {
+        GCompound box = new GCompound();
+        GRect outline = new GRect(BOX_WIDTH, BOX_HEIGHT);
+        GLabel label = new GLabel(name);
+
+        box.add(outline, -BOX_WIDTH / 2, -BOX_HEIGHT / 2);
+        box.add(label, -label.getWidth() / 2, label.getAscent() / 2);
+        add(box, getWidth() / 2.0, getHeight() / 2.0);
+        boxes.put(name, box);
+    }
+
+    private void removeBox(String name) {
+        GCompound box = boxes.remove(name);
+        if (box != null) {
+            remove(box);
+        }
+    }
+
+    private void clearBoxes() {
+        for (GCompound box : boxes.values()) {
+            remove(box);
+        }
+        boxes.clear();
+    }
+
+    public void mousePressed(MouseEvent event) {
+        GObject object = getElementAt(event.getX(), event.getY());
+        if (object instanceof GCompound) {
+            draggedBox = (GCompound) object;
+            dragOffsetX = event.getX() - draggedBox.getX();
+            dragOffsetY = event.getY() - draggedBox.getY();
+        }
+    }
+
+    public void mouseDragged(MouseEvent event) {
+        if (draggedBox != null) {
+            draggedBox.setLocation(
+                    event.getX() - dragOffsetX,
+                    event.getY() - dragOffsetY);
+        }
+    }
+
+    public void mouseReleased(MouseEvent event) {
+        draggedBox = null;
+    }
+}
