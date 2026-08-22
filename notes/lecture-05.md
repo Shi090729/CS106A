@@ -4,7 +4,7 @@
 
 ### Variables and Values
 
-A variable has a name, a type, and a value. Its name must begin with a letter or underscore and cannot be a Java reserved word. Common types introduced in this lecture include `int` for whole-number counting, `double` for real values, `boolean` for `true` or `false`, and `char` for a single character.
+A variable has a name, a type, and a value. A Java identifier can begin with a letter, underscore, or dollar sign, although ordinary variable names conventionally begin with a letter. Later characters may also be digits, and a reserved word cannot be used as an identifier. The main primitive types used here are `int` for whole-number counting and `double` for values that may contain a fractional part. Later lectures introduce `boolean` and `char` in more detail.
 
 Variables should normally be initialized before use:
 

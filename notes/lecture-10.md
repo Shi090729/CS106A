@@ -6,6 +6,8 @@
 
 A subclass constructor can call its superclass constructor with `super(...)`. The subclass should use public methods rather than directly accessing private superclass fields. This keeps the superclass responsible for its own data.
 
+A subclass can override an inherited method by defining a method with the same signature. Calls on a subclass object then use the subclass implementation. The `@Override` annotation lets the compiler verify that the method really overrides an inherited method rather than accidentally introducing a different one.
+
 ACM graphics classes share the `GObject` superclass. This means code can treat a `GRect`, `GOval`, `GLabel`, or `GLine` as a `GObject`. A `GraphicsProgram` forwards many operations to its internal `GCanvas`. Important canvas operations include adding and removing objects, clearing the canvas, and using `getElementAt(x, y)` to find the frontmost object at a point. If no object is there, the result is `null`.
 
 All graphics objects inherit common operations such as moving, changing location or color, checking whether they contain a point, controlling visibility, and changing their z-order.

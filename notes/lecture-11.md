@@ -18,6 +18,8 @@ Mouse callbacks include `mouseClicked`, `mousePressed`, `mouseReleased`, `mouseM
 
 Keyboard callbacks include `keyPressed`, `keyReleased`, and `keyTyped`. A `KeyEvent` can provide either the typed character or a key code for special keys such as the arrows.
 
+The UFO example brings these ideas together: a compound graphical object responds to keyboard or mouse input while an animation loop changes its position. Instance variables hold the state that must be shared by setup, event callbacks, and animation updates.
+
 ## My Takeaways
 
 `GCompound` is the idea I expect to reuse most. If a face, game piece, or labeled box is represented as one compound, the rest of the program can move and store it without knowing every line and oval inside it. That is composition serving the same abstraction goal as helper methods.

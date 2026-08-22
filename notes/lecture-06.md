@@ -4,6 +4,8 @@
 
 ### Numeric Expressions
 
+`readInt(prompt)` and `readDouble(prompt)` display a prompt and return a value of the requested type. The returned value still has to be stored in a variable if the program needs it later. These methods handle console conversion for the simple numeric-input cases used in the course.
+
 If both operands of `/` are integers, Java performs integer division and discards the remainder. If either operand is a `double`, the result uses real-number division. A cast temporarily treats a value as another type:
 
 ```java

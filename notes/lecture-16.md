@@ -20,6 +20,12 @@ A fixed array sometimes has more capacity than currently used. In that case, the
 
 The effective-size pattern appears whenever input arrives incrementally. Inserting an element may require shifting later entries to make a gap; deleting one requires shifting them back and decrementing the logical size. The array length does not change during either operation.
 
+### Initializers and an introduction to ArrayList
+
+An array initializer such as `int[] values = {10, 20, 30};` creates and fills an array in one expression. Its length is determined by the number of listed values.
+
+The lecture also introduces `ArrayList` as a collection whose effective size changes automatically. Unlike an array, it uses methods such as `add`, `get`, and `size` rather than bracket indexing and a public `length` field. The following lecture develops this comparison in more detail.
+
 ## My Takeaways
 
 Arrays make repetitive data manageable, but they also make boundaries much more important. I want to get into the habit of writing the valid index range before writing a loop, especially when shifting or inserting elements.

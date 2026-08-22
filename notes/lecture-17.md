@@ -14,11 +14,9 @@ The lecture then returns to `ArrayList`, which provides a resizable sequence. `a
 
 The list operations are discussed in terms of their effect on indexes. `add` at an index opens a position and shifts later elements right; `remove` closes a position and shifts them left; `set` changes a value without changing the list's size. Keeping those effects distinct helps when tracing a loop that modifies a list.
 
-### Generics and reusable methods
+### Generic collection types
 
-Generics make one method reusable for many element types. A method that prints an `ArrayList` does not need a separate version for strings and integers if its operations do not depend on the element's specific type. The compiler checks the declared type and prevents incompatible objects from being inserted.
-
-Generics move a type check from runtime behavior into the compiler. The angle-bracket type documents what the collection is intended to contain, while wrapper classes such as `Integer` allow primitive-looking values to participate in the object-based collection APIs.
+`ArrayList<E>` is a generic, or template, class. The type argument in angle brackets specifies the kind of object the list contains, as in `ArrayList<String>`. The compiler can then reject an incompatible insertion and return the declared element type from `get` without an explicit cast. Wrapper classes such as `Integer` allow primitive-looking values to participate in object-based collections.
 
 ### Matching representation to the task
 
@@ -36,4 +34,4 @@ Each integer pixel encodes red, green, and blue components. The ACM image utilit
 
 The phrase “array of arrays” is more helpful to me than treating a two-dimensional array as a mysterious new type. It explains why `matrix.length` and `matrix[row].length` are two different questions.
 
-I also like the way generics reduce duplicated code. The method can focus on the operations it needs instead of being rewritten for every possible element type. At the same time, I should remember that `ArrayList` stores objects, not primitive types directly.
+I also like the way generics make the element type explicit. `ArrayList<String>` tells both the compiler and the reader what belongs in the collection, while wrapper classes make primitive values usable in object-based collections.

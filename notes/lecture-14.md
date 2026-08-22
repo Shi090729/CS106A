@@ -4,7 +4,7 @@
 
 ### Bits, bytes, and units of storage
 
-The lecture moves beneath Java syntax to explain how information is represented in memory. A bit is one binary digit, either zero or one. Eight bits form a byte. Larger storage units are built from powers of two: a kilobyte is 1,024 bytes, a megabyte is 1,024 kilobytes, and a gigabyte is 1,024 megabytes. The finite number of bits used for a Java primitive explains why numeric types have bounded ranges.
+The lecture moves beneath Java syntax to explain how information is represented in memory. A bit is one binary digit, either zero or one. Eight bits form a byte. The lecture uses the traditional binary convention in which a kilobyte is 1,024 bytes, a megabyte is 1,024 kilobytes, and a gigabyte is 1,024 megabytes. In modern SI terminology, the corresponding binary units are kibibytes, mebibytes, and gibibytes. The finite number of bits used for a Java primitive explains why numeric types have bounded ranges.
 
 Binary values are often written in hexadecimal because one hexadecimal digit represents four bits. The digits `0` through `9` are followed by `A` through `F`, representing decimal values ten through fifteen. Hexadecimal is particularly useful when writing memory addresses because it is much shorter than the equivalent sequence of binary digits.
 
@@ -18,7 +18,7 @@ The lecture distinguishes the stack from the heap. Local variables and method-ca
 
 Declaring an object variable does not by itself create the object. The allocation occurs when `new` calls a constructor and reserves heap storage. Assigning one object variable to another copies the reference, not the object. The two variables then refer to the same heap object, a situation called aliasing. A mutation performed through either reference is visible through the other.
 
-A reference may also be `null`, meaning that it does not lead to any object. Calling an instance method through a null reference produces a null-reference error because there is no receiver on the heap. Drawing the local reference boxes and the heap objects separately makes this failure easier to understand than treating the variable as if it contained the object itself.
+A reference may also be `null`, meaning that it does not lead to any object. Calling an instance method through a null reference throws a `NullPointerException` because there is no receiver on the heap. Drawing the local reference boxes and the heap objects separately makes this failure easier to understand than treating the variable as if it contained the object itself.
 
 ### Why the model matters
 

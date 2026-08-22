@@ -14,6 +14,8 @@ Java is object-oriented. A class combines behavior and data and acts as a templa
 
 The ACM library provides several program classes, including `ConsoleProgram` for text interaction and `GraphicsProgram` for drawing. A program defines a class, extends the appropriate program type, and begins executing in `run()`.
 
+`ConsoleProgram` supplies methods such as `println()` and `readLine()` for console interaction. `GraphicsProgram` instead supplies a canvas on which graphical objects can be added.
+
 ```java
 import acm.graphics.*;
 import acm.program.*;

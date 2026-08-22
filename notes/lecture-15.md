@@ -1,4 +1,4 @@
-# Lecture 15 - Objects, Memory, Files, and Exceptions
+# Lecture 15 - References, Wrapper Classes, Files, and Exceptions
 
 ## Course Content
 
@@ -14,11 +14,15 @@ The same model clarifies parameter passing. Java passes every argument by value.
 
 The instructor emphasizes the precise Java rule: every argument is passed by value. For an object argument, the copied value is the reference itself. A method can mutate fields through that copied reference, but assigning a new object to the parameter only changes the parameter's local box.
 
+### Wrapper classes
+
+Primitive values are not objects, but Java supplies wrapper classes such as `Integer`, `Double`, `Boolean`, and `Character`. A wrapper stores a primitive value in an object and provides conversion methods. This distinction becomes important for collections such as `ArrayList`, which store objects rather than primitive values directly.
+
 ### Files and exceptional cases
 
-The lecture then connects these ideas to files. A program opens a file, reads its contents through a scanner or reader, processes the data, and closes the resource. File operations can fail for reasons outside the program's control, so Java uses exceptions to report problems such as a missing file. An exception is different from an ordinary return value because it interrupts the normal path until it is handled.
+The lecture then connects these ideas to files. `FileReader` and `BufferedReader` support character and line input; `readLine()` returns `null` at end-of-file. `FileWriter` and `PrintWriter` support output. A program must open the file, process its contents, and close the reader or writer when it is finished.
 
-File processing extends the same idea of separating normal work from exceptional situations. A scanner can read tokens or lines only after the file has been opened successfully; the program must decide whether to catch an exception locally, report it to the user, or let a calling method handle it. Closing the file is part of the resource's lifecycle.
+File operations can fail for reasons outside the program's control, so Java reports problems such as a missing file using exceptions. A `try`/`catch` statement separates the normal path from recovery code. The program must decide whether to handle an exception locally, report it to the user, or allow a calling method to handle it.
 
 ## My Takeaways
 

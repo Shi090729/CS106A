@@ -2,6 +2,16 @@
 
 ## Course Content
 
+### Graphics contest and final-exam scope
+
+The final lecture begins with the graphics-contest winners and then turns to exam preparation. The final is open book and open notes but closed computer. Karel is not part of the final-exam coverage; the emphasis is on the Java material developed across the course. The practice final is intended to be attempted under realistic time constraints and then checked against its supplied solutions.
+
+### Concrete review examples
+
+One review problem traverses a `HashMap` through its key set and prints entries whose key equals the associated value. It combines the iterator pattern, map lookup, and string comparison with `equals`.
+
+The TargetSeeker graphics example stores a moving seeker's position and a target position. A mouse click relocates the target, while repeated animation steps move the seeker toward it along the x and y axes. The example integrates instance variables, mouse events, graphics geometry, animation, and decomposition at the level expected for a final-exam program.
+
 ### A recurring problem-solving process
 
 The course repeatedly uses the same development cycle: understand the specification, choose a representation, decompose the problem, implement one manageable part, observe the program's behavior, and revise the design. This pattern appears first in Karel and continues through graphics, strings, arrays, collections, interactors, and larger applications.
