@@ -1,31 +1,45 @@
-import acm.util.*;
-import java.io.*;
-import java.util.*;
+import acm.util.ErrorException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HangmanLexicon {
-	private ArrayList<String> words = new ArrayList<String>();
 
-	public HangmanLexicon() {
-		try {
-			Scanner scanner = new Scanner(new File("HangmanLexicon.txt"));
-			while (scanner.hasNextLine()) {
-				String word = scanner.nextLine().trim();
-				if (!word.isEmpty()) words.add(word.toUpperCase());
-			}
-			scanner.close();
-		} catch (FileNotFoundException ex) {
-			throw new ErrorException("Unable to read HangmanLexicon.txt");
-		}
-	}
+    private static final String LEXICON_FILE = "HangmanLexicon.txt";
 
-/** Returns the number of words in the lexicon. */
-	public int getWordCount() {
-		return words.size();
-	}
+    private final List<String> words = new ArrayList<String>();
 
-/** Returns the word at the specified index. */
-	public String getWord(int index) {
-		if (index < 0 || index >= words.size()) throw new ErrorException("getWord: Illegal index");
-		return words.get(index);
-	};
+    public HangmanLexicon() {
+        try {
+            BufferedReader reader = new BufferedReader(
+                    new FileReader(LEXICON_FILE));
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                }
+
+                String word = line.trim();
+                if (word.length() > 0) {
+                    words.add(word.toUpperCase());
+                }
+            }
+            reader.close();
+        } catch (IOException exception) {
+            throw new ErrorException(exception);
+        }
+    }
+
+    public int getWordCount() {
+        return words.size();
+    }
+
+    public String getWord(int index) {
+        if (index < 0 || index >= words.size()) {
+            throw new ErrorException("getWord: Illegal index");
+        }
+        return words.get(index);
+    }
 }
