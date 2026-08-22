@@ -1,29 +1,30 @@
-import acm.program.*;
+import acm.program.ConsoleProgram;
 
 public class FindRange extends ConsoleProgram {
-	public void run() {
-		println("This program finds the largest and smallest numbers.");
-		int value = readInt("? ");
 
-		if (value == SENTINEL) {
-			println("No values were entered.");
-			return;
-		}
+    private static final int SENTINEL = 0;
 
-		int smallest = value;
-		int largest = value;
-		while (true) {
-			value = readInt("? ");
-			if (value == SENTINEL) {
-				break;
-			}
-			smallest = Math.min(smallest, value);
-			largest = Math.max(largest, value);
-		}
+    public void run() {
+        println("This program finds the largest and smallest numbers.");
+        int value = readInt("? ");
 
-		println("smallest: " + smallest);
-		println("largest: " + largest);
-	}
+        if (value == SENTINEL) {
+            println("No values were entered.");
+            return;
+        }
 
-	private static final int SENTINEL = 0;
+        int smallest = value;
+        int largest = value;
+        while (true) {
+            value = readInt("? ");
+            if (value == SENTINEL) {
+                break;
+            }
+            smallest = Math.min(smallest, value);
+            largest = Math.max(largest, value);
+        }
+
+        println("smallest: " + smallest);
+        println("largest: " + largest);
+    }
 }

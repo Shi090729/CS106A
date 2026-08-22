@@ -1,34 +1,27 @@
-import acm.graphics.*;
-import acm.program.*;
-import java.awt.*;
+import acm.graphics.GRect;
+import acm.program.GraphicsProgram;
 
 public class Pyramid extends GraphicsProgram {
 
-	/** Width of each brick in pixels */
-	private static final int BRICK_WIDTH = 30;
+    private static final int BRICK_WIDTH = 30;
+    private static final int BRICK_HEIGHT = 12;
+    private static final int BRICKS_IN_BASE = 14;
 
-	/** Height of each brick in pixels */
-	private static final int BRICK_HEIGHT = 12;
+    public void run() {
+        for (int row = 0; row < BRICKS_IN_BASE; row++) {
+            drawRow(row);
+        }
+    }
 
-/** Number of bricks in the base of the pyramid */
-	private static final int BRICKS_IN_BASE = 14;
+    private void drawRow(int row) {
+        int bricksInRow = BRICKS_IN_BASE - row;
+        double rowWidth = bricksInRow * BRICK_WIDTH;
+        double startX = (getWidth() - rowWidth) / 2.0;
+        double y = getHeight() - (row + 1) * BRICK_HEIGHT;
 
-	public void run() {
-		for (int row = 0; row < BRICKS_IN_BASE; row++) {
-			drawRow(row);
-		}
-	}
-
-	/* Draws one row, counting upward from the base as row zero. */
-	private void drawRow(int row) {
-		int bricksInRow = BRICKS_IN_BASE - row;
-		double rowWidth = bricksInRow * BRICK_WIDTH;
-		double startX = (getWidth() - rowWidth) / 2.0;
-		double y = getHeight() - (row + 1) * BRICK_HEIGHT;
-
-		for (int brick = 0; brick < bricksInRow; brick++) {
-			double x = startX + brick * BRICK_WIDTH;
-			add(new GRect(x, y, BRICK_WIDTH, BRICK_HEIGHT));
-		}
-	}
+        for (int brick = 0; brick < bricksInRow; brick++) {
+            double x = startX + brick * BRICK_WIDTH;
+            add(new GRect(x, y, BRICK_WIDTH, BRICK_HEIGHT));
+        }
+    }
 }
