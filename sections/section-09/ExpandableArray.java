@@ -1,1 +1,27 @@
-public class ExpandableArray {private Object[] data=new Object[0];public void set(int i,Object v){if(i>=data.length){Object[] n=new Object[Math.max(i+1,Math.max(1,data.length*2))];System.arraycopy(data,0,n,0,data.length);data=n;}data[i]=v;}public Object get(int i){return i>=0&&i<data.length?data[i]:null;}}
+public class ExpandableArray {
+
+    private Object[] elements;
+
+    public ExpandableArray() {
+        elements = new Object[0];
+    }
+
+    public void set(int index, Object value) {
+        if (index >= elements.length) {
+            Object[] expandedElements = new Object[index + 1];
+            for (int i = 0; i < elements.length; i++) {
+                expandedElements[i] = elements[i];
+            }
+            elements = expandedElements;
+        }
+
+        elements[index] = value;
+    }
+
+    public Object get(int index) {
+        if (index < 0 || index >= elements.length) {
+            return null;
+        }
+        return elements[index];
+    }
+}

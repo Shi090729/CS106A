@@ -1,1 +1,0 @@
-import java.util.*;public class EqualityAndArray {public static boolean isNameQ(String s){return "Q".equals(s);}public static void main(String[] a){ExpandableArray x=new ExpandableArray();x.set(14,"Bob");x.set(21,"Sally");System.out.println(x.get(14));}}
