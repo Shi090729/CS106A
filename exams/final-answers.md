@@ -1,58 +1,257 @@
-# Practice Final - My Answers
+# Practice Final Answers
 
-## 1. References and Arrays
+## 1. Short Answer
 
-Primitive arguments are copied values, so assigning to an `int` parameter changes only the method's local variable. An object argument is also passed by value, but the copied value is a reference to the same object; mutations through that reference are therefore visible to the caller.
+### 1a. Primitive and Object Parameters
 
-For the array rotation, the original array is `{10, 20, 30, 40, 50}`. The forward loop overwrites each later position with the value immediately before it, producing `{50, 10, 10, 10, 10}` after the saved last value is assigned to index zero. To perform a true right rotation, the loop must run from the last index down to index one.
+Java passes every argument by value. For an `int`, the copied value is the
+integer itself, so assigning to the parameter changes only the local copy. For
+an object, the copied value is a reference to the same object. Mutating the
+object through that copied reference is therefore visible after the method
+returns, although assigning a different object to the parameter would still
+change only the local copy of the reference.
 
-## 2. Etch-a-Sketch
+### 1b. Array Trace
 
-Create a `GCompound` containing two diagonal `GLine` objects and add it at the canvas center. Add four buttons in the `SOUTH` region and register an action listener. Keep the cross center in `x` and `y`. For each command, save the old coordinates, calculate the direction's 20-pixel delta, add a red line from the old center to the new center, update `x` and `y`, and move the compound by the same delta. Compare action commands with `equals`.
+The final contents of `list` are:
 
-## 3. Word Ladder Validation
+```text
+{50, 10, 10, 10, 10}
+```
 
-Read words until a blank line. Each entered word must be in the lexicon. The first word has no predecessor, so it is valid once the lexicon check passes. Every later word must have the same length as the previous word and differ in exactly one character position. If a word is illegal, print an error and keep the previous valid word instead of replacing it.
+The forward loop overwrites each element before its original value can be
+copied. A true right rotation would need to loop backward from the last index.
+
+## 2. Graphics and Interactivity
 
 ```java
-private int differences(String a, String b) {
-    int count = 0;
-    for (int i = 0; i < a.length(); i++) {
-        if (a.charAt(i) != b.charAt(i)) count++;
+import acm.graphics.GCompound;
+import acm.graphics.GLine;
+import acm.program.GraphicsProgram;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+
+public class EtchASketch extends GraphicsProgram {
+
+    private static final double CROSS_SIZE = 10;
+    private static final double STEP_SIZE = 20;
+
+    private GCompound cross;
+    private double crossX;
+    private double crossY;
+
+    public void init() {
+        add(new JButton("North"), SOUTH);
+        add(new JButton("South"), SOUTH);
+        add(new JButton("East"), SOUTH);
+        add(new JButton("West"), SOUTH);
+
+        crossX = getWidth() / 2.0;
+        crossY = getHeight() / 2.0;
+        double radius = CROSS_SIZE / 2.0;
+
+        cross = new GCompound();
+        cross.add(new GLine(-radius, -radius, radius, radius));
+        cross.add(new GLine(-radius, radius, radius, -radius));
+        add(cross, crossX, crossY);
+        addActionListeners();
     }
-    return count;
+
+    public void actionPerformed(ActionEvent event) {
+        String command = event.getActionCommand();
+
+        if (command.equals("North")) {
+            moveCross(0, -STEP_SIZE);
+        } else if (command.equals("South")) {
+            moveCross(0, STEP_SIZE);
+        } else if (command.equals("East")) {
+            moveCross(STEP_SIZE, 0);
+        } else if (command.equals("West")) {
+            moveCross(-STEP_SIZE, 0);
+        }
+    }
+
+    private void moveCross(double dx, double dy) {
+        GLine path = new GLine(crossX, crossY,
+                crossX + dx, crossY + dy);
+        path.setColor(Color.RED);
+        add(path);
+
+        crossX += dx;
+        crossY += dy;
+        cross.move(dx, dy);
+    }
 }
 ```
 
-## 4. Sudoku Corner Check
+## 3. Word Ladder Validation
 
-Use `boolean[] used = new boolean[10]`. Visit rows `0` through `2` and columns `0` through `2`. Reject a value below 1 or above 9, and reject a digit already marked in `used`. Mark each accepted digit. If all nine cells pass, return `true`.
+```java
+import acm.program.ConsoleProgram;
+
+public class CheckWordLadder extends ConsoleProgram {
+
+    private Lexicon lexicon = new Lexicon("english.dat");
+
+    public void run() {
+        println("Program to check a word ladder.");
+        println("Enter a sequence of words ending with a blank line.");
+
+        String previous = null;
+        while (true) {
+            String current = readLine();
+            if (current.isEmpty()) {
+                break;
+            }
+
+            if (isLegalLadderPair(previous, current)) {
+                previous = current;
+            } else {
+                println("That word is not legal. Try again.");
+            }
+        }
+    }
+
+    private boolean isLegalLadderPair(String previous, String current) {
+        if (!lexicon.isEnglishWord(current)) {
+            return false;
+        }
+        if (previous == null) {
+            return true;
+        }
+        if (previous.length() != current.length()) {
+            return false;
+        }
+        return countCharacterDifferences(previous, current) == 1;
+    }
+
+    private int countCharacterDifferences(String first, String second) {
+        int differences = 0;
+        for (int index = 0; index < first.length(); index++) {
+            if (first.charAt(index) != second.charAt(index)) {
+                differences++;
+            }
+        }
+        return differences;
+    }
+}
+```
+
+An invalid word does not replace `previous`, so the next entry is still checked
+against the last valid word in the ladder.
+
+## 4. Sudoku Upper-Left Corner
+
+```java
+private boolean checkUpperLeftCorner(int[][] matrix) {
+    boolean[] alreadyUsed = new boolean[10];
+
+    for (int row = 0; row < 3; row++) {
+        for (int column = 0; column < 3; column++) {
+            int digit = matrix[row][column];
+            if (digit < 1 || digit > 9) {
+                return false;
+            }
+            if (alreadyUsed[digit]) {
+                return false;
+            }
+            alreadyUsed[digit] = true;
+        }
+    }
+
+    return true;
+}
+```
+
+Nine cells that are all in the range 1 through 9 and contain no duplicate must
+contain every digit exactly once.
 
 ## 5. ArrayList Queue
 
 ```java
-private ArrayList<String> data = new ArrayList<String>();
+import java.util.ArrayList;
 
-public void add(String value) {
-    data.add(value);
-}
+public class StringQueue implements MinimalStringQueue {
 
-public String poll() {
-    if (data.isEmpty()) return null;
-    return data.remove(0);
-}
+    private ArrayList<String> waitingLine;
 
-public int size() {
-    return data.size();
+    public StringQueue() {
+        waitingLine = new ArrayList<String>();
+    }
+
+    public void add(String value) {
+        waitingLine.add(value);
+    }
+
+    public String poll() {
+        if (waitingLine.isEmpty()) {
+            return null;
+        }
+        return waitingLine.remove(0);
+    }
+
+    public int size() {
+        return waitingLine.size();
+    }
 }
 ```
 
-The first inserted element is removed first, so this implements FIFO behavior.
+New values are appended and polling removes index zero, which gives the queue
+first-in, first-out behavior.
 
 ## 6. Googlewhack
 
-Search for both words and count the URLs that occur in both result arrays. Return `true` only when the count is exactly one. Compare URLs with `equals`, not `==`, and return `false` as soon as a second common URL is found.
+```java
+private boolean isGooglewhack(String firstWord, String secondWord) {
+    String[] firstPages = googleSearch(firstWord);
+    String[] secondPages = googleSearch(secondWord);
+    int matches = 0;
+
+    for (String page : firstPages) {
+        if (findStringInArray(page, secondPages) != -1) {
+            matches++;
+            if (matches > 1) {
+                return false;
+            }
+        }
+    }
+
+    return matches == 1;
+}
+
+private int findStringInArray(String target, String[] values) {
+    for (int index = 0; index < values.length; index++) {
+        if (target.equals(values[index])) {
+            return index;
+        }
+    }
+    return -1;
+}
+```
+
+The pair is a Googlewhack only when the two search-result arrays contain
+exactly one common URL.
 
 ## 7. Common Key/Value Pairs
 
-Iterate over `map1.keySet()`. For each key, first test `map2.containsKey(key)`. If it exists in both maps, compare `map1.get(key)` and `map2.get(key)` with `equals`; increment the count only when both the key and its associated value match.
+```java
+public int commonKeyValuePairs(HashMap<String, String> first,
+        HashMap<String, String> second) {
+    int count = 0;
+
+    for (String key : first.keySet()) {
+        if (second.containsKey(key)
+                && first.get(key).equals(second.get(key))) {
+            count++;
+        }
+    }
+
+    return count;
+}
+```
+
+`containsKey` distinguishes a missing key from a key that merely has no lookup
+result, and `equals` compares the associated strings by content.
