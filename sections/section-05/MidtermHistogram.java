@@ -1,1 +1,0 @@
-import java.io.*;import java.util.*;public class MidtermHistogram { public static int[] read(String f)throws IOException{int[] h=new int[11];Scanner s=new Scanner(new File(f));while(s.hasNextInt()){int n=s.nextInt();h[Math.min(n/10,10)]++;}s.close();return h;} }
