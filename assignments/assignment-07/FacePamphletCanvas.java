@@ -1,57 +1,106 @@
 /*
  * File: FacePamphletCanvas.java
  * -----------------------------
- * This class represents the canvas on which the profiles in the social
- * network are displayed.  NOTE: This class does NOT need to update the
- * display when the window is resized.
+ * Displays profiles and application messages.
  */
 
+import acm.graphics.GCanvas;
+import acm.graphics.GImage;
+import acm.graphics.GLabel;
+import acm.graphics.GRect;
 
-import acm.graphics.*;
-import java.awt.*;
-import java.util.*;
+import java.awt.Color;
+import java.util.Iterator;
 
 public class FacePamphletCanvas extends GCanvas
-					implements FacePamphletConstants {
-	private GLabel message;
+        implements FacePamphletConstants {
 
-	/**
-	 * Constructor
-	 * This method takes care of any initialization needed for
-	 * the display
-	 */
-	public FacePamphletCanvas() {
-		setSize(APPLICATION_WIDTH,APPLICATION_HEIGHT);
-	}
+    private GLabel message;
 
+    public void showMessage(String text) {
+        if (message != null) {
+            remove(message);
+        }
 
-	/**
-	 * This method displays a message string near the bottom of the
-	 * canvas.  Every time this method is called, the previously
-	 * displayed message (if any) is replaced by the new message text
-	 * passed in.
-	 */
-	public void showMessage(String msg) {
-		if(message!=null)remove(message); message=new GLabel(msg,LEFT_MARGIN,getHeight()-BOTTOM_MESSAGE_MARGIN); message.setFont(MESSAGE_FONT); add(message);
-	}
+        message = new GLabel(text);
+        message.setFont(MESSAGE_FONT);
+        double x = (getWidth() - message.getWidth()) / 2.0;
+        double y = getHeight() - BOTTOM_MESSAGE_MARGIN;
+        add(message, x, y);
+    }
 
+    public void displayProfile(FacePamphletProfile profile) {
+        removeAll();
+        message = null;
 
-	/**
-	 * This method displays the given profile on the canvas.  The
-	 * canvas is first cleared of all existing items (including
-	 * messages displayed near the bottom of the screen) and then the
-	 * given profile is displayed.  The profile display includes the
-	 * name of the user from the profile, the corresponding image
-	 * (or an indication that an image does not exist), the status of
-	 * the user, and a list of the user's friends in the social network.
-	 */
-	public void displayProfile(FacePamphletProfile profile) {
-		removeAll(); message=null; if(profile==null)return;
-		GLabel name=new GLabel(profile.getName(),LEFT_MARGIN,TOP_MARGIN+24);name.setFont(PROFILE_NAME_FONT);add(name);
-		if(profile.getImage()!=null){GImage img=profile.getImage();img.setSize(IMAGE_WIDTH,IMAGE_HEIGHT);add(img,LEFT_MARGIN,name.getY()+IMAGE_MARGIN);}else{GLabel no=new GLabel("No Image",LEFT_MARGIN,name.getY()+IMAGE_MARGIN+PROFILE_IMAGE_FONT.length());no.setFont(PROFILE_IMAGE_FONT);add(no);}
-		GLabel status=new GLabel(profile.getStatus(),LEFT_MARGIN+IMAGE_WIDTH+40,name.getY()+IMAGE_MARGIN+24);status.setFont(PROFILE_STATUS_FONT);add(status);
-		GLabel fl=new GLabel("Friends:",LEFT_MARGIN+IMAGE_WIDTH+40,status.getY()+40);fl.setFont(PROFILE_FRIEND_LABEL_FONT);add(fl);int y=(int)fl.getY()+25;for(Iterator<String> it=profile.getFriends();it.hasNext();){GLabel f=new GLabel(it.next(),LEFT_MARGIN+IMAGE_WIDTH+40,y);f.setFont(PROFILE_FRIEND_FONT);add(f);y+=22;}
-	}
+        if (profile == null) {
+            return;
+        }
 
+        GLabel nameLabel = drawName(profile.getName());
+        double imageTop = nameLabel.getY() + IMAGE_MARGIN;
 
+        drawImage(profile.getImage(), imageTop);
+        drawStatus(profile, imageTop);
+        drawFriends(profile, imageTop);
+    }
+
+    private GLabel drawName(String name) {
+        GLabel label = new GLabel(name);
+        label.setFont(PROFILE_NAME_FONT);
+        label.setColor(Color.BLUE);
+        add(label, LEFT_MARGIN, TOP_MARGIN + label.getAscent());
+        return label;
+    }
+
+    private void drawImage(GImage image, double imageTop) {
+        if (image == null) {
+            drawEmptyImage(imageTop);
+        } else {
+            image.setSize(IMAGE_WIDTH, IMAGE_HEIGHT);
+            add(image, LEFT_MARGIN, imageTop);
+        }
+    }
+
+    private void drawEmptyImage(double imageTop) {
+        GRect border = new GRect(IMAGE_WIDTH, IMAGE_HEIGHT);
+        add(border, LEFT_MARGIN, imageTop);
+
+        GLabel noImage = new GLabel("No Image");
+        noImage.setFont(PROFILE_IMAGE_FONT);
+        double x = LEFT_MARGIN + (IMAGE_WIDTH - noImage.getWidth()) / 2.0;
+        double y = imageTop + (IMAGE_HEIGHT + noImage.getAscent()
+                - noImage.getDescent()) / 2.0;
+        add(noImage, x, y);
+    }
+
+    private void drawStatus(FacePamphletProfile profile, double imageTop) {
+        String text;
+        if (profile.getStatus().isEmpty()) {
+            text = "No current status";
+        } else {
+            text = profile.getName() + " is " + profile.getStatus();
+        }
+
+        GLabel status = new GLabel(text);
+        status.setFont(PROFILE_STATUS_FONT);
+        double statusTop = imageTop + IMAGE_HEIGHT + STATUS_MARGIN;
+        add(status, LEFT_MARGIN, statusTop + status.getAscent());
+    }
+
+    private void drawFriends(FacePamphletProfile profile, double imageTop) {
+        double x = getWidth() / 2.0;
+        GLabel heading = new GLabel("Friends:");
+        heading.setFont(PROFILE_FRIEND_LABEL_FONT);
+        add(heading, x, imageTop);
+
+        double y = imageTop + heading.getHeight();
+        Iterator<String> friends = profile.getFriends();
+        while (friends.hasNext()) {
+            GLabel friend = new GLabel(friends.next());
+            friend.setFont(PROFILE_FRIEND_FONT);
+            add(friend, x, y);
+            y += friend.getHeight();
+        }
+    }
 }
